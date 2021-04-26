@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
 
-const createWindow = () => {
+export const createWindow = () => {
   const options: Electron.BrowserWindowConstructorOptions = {
     width: 400,
     height: 300,
@@ -19,6 +19,16 @@ const createWindow = () => {
   win.loadFile('public/index.html')
 
   win.webContents.openDevTools()
+}
+
+const { Notification } = require('electron')
+
+function showNotification() {
+  const notification = {
+    title: 'Basic Notification',
+    body: 'Notification from the Main process',
+  }
+  new Notification(notification).show()
 }
 
 // Electron の初期化が完了したらウィンドウを作成
